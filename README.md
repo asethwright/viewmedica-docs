@@ -17,9 +17,22 @@
 4. ViewMedica Mobile - A paid service which allows users to play videos from their device without an internet connection. It can be downloaded from the App Store. Mirroring is also required and can be purchased from the user's viewmedica.com account.
 5. ViewMedica DVD/CCTV - Products for in-office or waiting room use of the ViewMedica player and require no internet connection.
 
+### Help Links
+
+The standard ViewMedica documentation can be found at https://swarminteractive.com/viewmedica-support.html. This documentation is intended for users who are writing custom applications which utilize the ViewMedica player.
+
+### Opening the Player
+
+*A vm_open function call is dispatched to indicate that the ViewMedica player should use all of the currently set global variables and write the player interface to the targeted div. Variables will still persist after the vm_open function has been called, so future players can be opened by simply changing the openthis value, although our standard embed gives all values for user convenience.*
+
+```
+ex.
+vm_open();
+```
+
 ### Embed Variables
 
-* A basic embed is listed below to give context for the rest of the configuration options. This embed will open the ViewMedica 7 viewer in its default state with navigation menus.
+*A basic embed is listed below to give context for the rest of the configuration options. This embed will open the ViewMedica 7 viewer in its default state with navigation menus.*
 
 ```
 <!-- ViewMedica Embed Start -->
@@ -35,7 +48,6 @@ Global variable which loads a preferences file into the ViewMedica viewer. All o
 
 ```
 ex.
-
 client="1234";
 ```
 
@@ -45,7 +57,6 @@ Sets the language of the ViewMedica 7 viewer. This will override any option that
 
 ```
 ex.
-
 lang="es";
 ```
 
@@ -55,7 +66,6 @@ Sets the with of the ViewMedica player. The height will automatically be calcula
 
 ```
 ex.
-
 width=580;
 ```
 
@@ -70,7 +80,6 @@ A full list of openthis codes can be found in your viewmedica.com account under 
 
 ```
 ex.
-
 openthis="A_123456"; //a video always starts with A_
 openthis="L_123456"; //menu item locations may begin with L_ C_ or G_
 ```
@@ -81,7 +90,6 @@ Override the empty element that the ViewMedica player will be inserted in to. By
 
 ```
 ex.
-
 target_div="my_custom_div_id";
 ```
 
@@ -91,7 +99,6 @@ Whether or not the disclaimer should appear in the lower menu bar of the ViewMed
 
 ```
 ex.
-
 disclaimer=false;
 ```
 
@@ -101,7 +108,6 @@ By default, When the player is opened to video mode, users can exit the video in
 
 ```
 ex.
-
 menuaccess=false;
 ```
 
@@ -111,7 +117,6 @@ Hide the closed captions toggle button.
 
 ```
 ex.
-
 captions=false;
 ```
 
@@ -121,7 +126,6 @@ Hide the social sharing (email, facebook, twitter) button.
 
 ```
 ex.
-
 social=false;
 ```
 
@@ -131,7 +135,6 @@ Load all assets over HTTPS. By default, the ViewMedica player does not require a
 
 ```
 ex.
-
 secure=true;
 ```
 
@@ -141,7 +144,6 @@ The player is loaded in a muted state by default.
 
 ```
 ex.
-
 ignoreaudio=true;
 ```
 
@@ -151,7 +153,6 @@ Do not show the brochure printing buttons.
 
 ```
 ex.
-
 brochures=false;
 ```
 
@@ -161,7 +162,41 @@ Hide the button which toggles full screen mode. This can be useful if the player
 
 ```
 ex.
-
 fullscreen=false;
 ```
 
+### Functions
+
+- vm_open
+
+*return null*
+
+Open the ViewMedica player with the currently set global variables. Overwrite all information in the current targeted DOM element.
+
+```
+ex.
+vm_open();
+```
+
+- _vm_toggle_fs
+
+*param type (string)* Unused
+
+*param target (string)* ID of the parent DIV that surrounds the ViewMedica player, which will be given fixed/fullscreen css rules.
+
+*param open (string)* Openthis value for the player FS is being toggled. Used for sizing of the iFrame that contains the ViewMedica player.
+
+```
+ex.
+_vm_toggle_fs('fs', '#A_123456', 'A_123456'); //player was opened to an animation
+_vm_toggle_fs('fs', '#vm', 'vm'); //default player state
+```
+
+- _vm_ga
+
+*param trackingcode (string)* Information to send to google analytics. The default format used by ViewMedica is #VM Video Title - videofilename - playerlanguage
+
+```
+ex.
+_vm_ga('#VM Trigeminal Neuralgia (TN) - trigeminalneur - en'); //adds a track in google analytics
+```
