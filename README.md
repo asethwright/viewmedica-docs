@@ -167,36 +167,32 @@ fullscreen=false;
 
 ### Functions
 
-- vm_open
-
-*return null*
-
-Open the ViewMedica player with the currently set global variables. Overwrite all information in the current targeted DOM element.
-
 ```
+function vm_open() {}
+
+// Open the ViewMedica player with the currently set global variables. Overwrite all information in the current targeted DOM element.
+
 ex.
 vm_open();
 ```
 
-- _vm_toggle_fs
-
-*param type (string)* Unused
-
-*param target (string)* ID of the parent DIV that surrounds the ViewMedica player, which will be given fixed/fullscreen css rules.
-
-*param open (string)* Openthis value for the player FS is being toggled. Used for sizing of the iFrame that contains the ViewMedica player.
-
 ```
+function _vm_toggle_fs(type, target, open) {}
+
+// @param type (string) Unused
+// @param target (string) ID of the parent DIV that surrounds the ViewMedica player, which will be given fixed/fullscreen css rules.
+// @param open (string) Openthis value for the player FS is being toggled. Used for sizing of the iFrame that contains the ViewMedica player.
+
 ex.
 _vm_toggle_fs('fs', '#A_123456', 'A_123456'); //player was opened to an animation
 _vm_toggle_fs('fs', '#vm', 'vm'); //default player state
 ```
 
-- _vm_ga
-
-*param trackingcode (string)* Information to send to google analytics. The default format used by ViewMedica is #VM Video Title - videofilename - playerlanguage
-
 ```
+function _vm_ga(trackingcode) {}
+
+// @param trackingcode (string) Information to send to google analytics. The default format used by ViewMedica is #VM Video Title - videofilename - playerlanguage
+
 ex.
 _vm_ga('#VM Trigeminal Neuralgia (TN) - trigeminalneur - en'); //adds a track in google analytics
 ```
