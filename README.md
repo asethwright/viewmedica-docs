@@ -167,6 +167,7 @@ fullscreen=false;
 
 ### Functions
 
+- __Open the player__
 ```
 function vm_open() {}
 
@@ -176,6 +177,7 @@ ex.
 vm_open();
 ```
 
+- __Toggle Full Screen Mode__
 ```
 function _vm_toggle_fs(type, target, open) {}
 
@@ -188,6 +190,7 @@ _vm_toggle_fs('fs', '#A_123456', 'A_123456'); //player was opened to an animatio
 _vm_toggle_fs('fs', '#vm', 'vm'); //default player state
 ```
 
+- __Add Google Analytics Track__
 ```
 function _vm_ga(trackingcode) {}
 
