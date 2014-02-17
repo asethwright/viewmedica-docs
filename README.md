@@ -1,5 +1,12 @@
 # ViewMedica 7 API Documentation
 
+1. [Terminology](#terminology)
+2. [Help Links](#help-links)
+3. [Using the Player](#using-the-player)
+4. [Embed Variables](#embed-variables)
+5. [Functions](#functions)
+6. [Information Requests](#information-requests)
+
 ### Terminology
 
 *Menu Structure*
@@ -21,7 +28,7 @@
 
 The standard ViewMedica documentation can be found at https://swarminteractive.com/viewmedica-support.html. This documentation is intended for users who are writing custom applications which utilize the ViewMedica player.
 
-### Opening the Player
+### Using the Player
 
 *A vm_open function call is dispatched to indicate that the ViewMedica player should use all of the currently set global variables and write the player interface to the targeted div. Variables will still persist after the vm_open function has been called, so future players can be opened by simply changing the openthis value, although our standard embed gives all values for user convenience.*
 
@@ -198,4 +205,61 @@ function _vm_ga(trackingcode) {}
 
 ex.
 _vm_ga('#VM Trigeminal Neuralgia (TN) - trigeminalneur - en'); //adds a track in google analytics
+```
+
+### Information Requests
+
+To get started with information requests, you will first have get set up with an API key. Currently, API keys can only be requested via e-mail. This key is used to determine which types of information are allowed access to. There are two basic types of information that can be requested through our API.
+
+1. Client Information
+2. Video Information
+
+__Basic Request Example__
+
+Using curl:
+```
+curl -o viewmedica-video-information.json https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&fulltext=true
+```
+
+Via http:
+```
+https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&fulltext=true
+Save As >> JSON
+```
+
+__Video Information__
+
+Variables are provided below that trigger different types of information to be returned with your API request.
+
+- Taxonomy *&taxonomy=L_123456*
+
+Only return video items from a particular taxonomy item, such as a library, collection or group. This value can also be set to false if items should not be grouped.
+
+- Item *&item=filename*
+
+Get information about a single video item. Openthis codes and filenames are accepted.
+
+- Text *&fulltext=true*
+
+Return video transcript.
+
+- Updated *&updated=true*
+
+Return information about the last updated timestamp.
+
+- Reviewed *&reviewed=true*
+
+Return information about the last reviewed timestamp.
+
+__Client Information__
+
+Variables are provided below that trigger different types of information to be returned with your API request. Client information will only be available if that account is associated with your API key.
+
+- Retrieve information about a client
+```
+@int client
+
+https://swarminteractive.com/vm/api/client/?key=YOURAPIKEYHERE&client=1234
+
+@return json
 ```
