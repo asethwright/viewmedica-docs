@@ -80,8 +80,8 @@ width=580;
 
 Tells the ViewMedica player either:
 
-a. which content item it should open to and open in video mode
-b. which library, collection, or group it should open to
+- which content item it should open to and open in video mode
+- which library, collection, or group it should open to
 
 A full list of openthis codes can be found in your viewmedica.com account under installation support.
 
