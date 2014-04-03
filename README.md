@@ -229,7 +229,7 @@ Save As >> JSON
 
 __Video Information__
 
-Variables are provided below that trigger different types of information to be returned with your API request.
+Variables are provided below that trigger different types of information to be returned with your API request. You must display copyright information, attached to the response JSON, if this information is displayed on a public website (i.e. © 2012 Swarm Interactive, Inc.). Please refer to your reseller agreement for more information.
 
 - Taxonomy *&taxonomy=L_123456*
 
