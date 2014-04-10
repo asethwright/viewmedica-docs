@@ -260,7 +260,7 @@ __Client Information__
 
 Variables are provided below that trigger different types of information to be returned with your API request. Client information will only be available if that account is associated with your API key.
 
-- Retrieve information about a client
+- Retrieve information about a client. Response includes practice name, url and content list (files/openthis codes).
 ```
 @int client
 
