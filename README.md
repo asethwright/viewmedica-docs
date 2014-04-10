@@ -218,12 +218,12 @@ __Basic Request Example__
 
 Using curl:
 ```
-curl -o viewmedica-video-information.json https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&fulltext=true
+curl -o viewmedica-video-information.json https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&description=true
 ```
 
 Via http:
 ```
-https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&fulltext=true
+https://swarminteractive.com/vm/api/video/?key=YOURAPIKEYHERE&description=true
 Save As >> JSON
 ```
 
@@ -236,12 +236,17 @@ Variables are provided below that trigger different types of information to be r
 Only return video items from a particular taxonomy item, such as a library, collection or group. This value can also be set to false if items should not be grouped.
 
 - Item *&item=filename*
+- Item *&item=A_123456*
 
 Get information about a single video item. Openthis codes and filenames are accepted.
 
 - Text *&fulltext=true*
 
-Return video transcript.
+Return video transcript. *Only available through a separate license. Contact us for more info.*
+
+- Description *&description=true*
+
+Get descriptions for video item(s).
 
 - Updated *&updated=true*
 
