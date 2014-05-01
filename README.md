@@ -5,7 +5,8 @@
 3. [Using the Player](#using-the-player)
 4. [Embed Variables](#embed-variables)
 5. [Functions](#functions)
-6. [Information Requests](#information-requests)
+7. [Information Requests](#information-requests)
+6. [Creating/Retrieving a Client](#client-information)
 
 ### Terminology
 
@@ -256,6 +257,8 @@ Return information about the last updated timestamp.
 
 Return information about the last reviewed timestamp.
 
+### Client Information
+
 __Create a Client__
 
 You can send an HTTP POST request to ViewMedica servers with your API key to add a new account to your ViewMedica Provider Dashboard. An account created in this fashion will automatically be placed into development mode, so the videos will work for a period of several months with watermarking. You will not be billed until you log in and activate the account.
@@ -282,7 +285,7 @@ You can see example implementations of creating and retrieving clients using CUR
 
 The API will return the exact same response as the Client Information request listed below.
 
-__Client Information__
+__Get Info About a Client__
 
 Variables are provided below that trigger different types of information to be returned with your API request. Client information will only be available if that account is associated with your API key.
 
