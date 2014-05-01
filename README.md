@@ -256,15 +256,66 @@ Return information about the last updated timestamp.
 
 Return information about the last reviewed timestamp.
 
+__Create a Client__
+
+You can send an HTTP POST request to ViewMedica servers with your API key to add a new account to your ViewMedica Provider Dashboard. An account created in this fashion will automatically be placed into development mode, so the videos will work for a period of several months with watermarking. You will not be billed until you log in and activate the account.
+
+This function is meant to allow you to send a list of animations that you would like to add to a new account via their unique identifier (aka openthis code, ex. A_123456). It is recommended that you retrieve the available videos via our video information API.
+
+The function will return the created client's JSON information or a 0 if the client creation could not be completed. Let's look at an example request with all of the required pieces:
+
+```
+POST URL
+https://swarminteractive.com/vm/api/client?key=YOURAPIKEYHERE
+
+REQUIRED PARAMS
+username: "yourusername"
+password: "yourpassword"
+practice: "Your Practice Name"
+url: "yoururl.com"
+content: "A_b6cd20aa,A_f6094215,A_0c8762d6"
+```
+
+As you can see, the content is a comma separated string of all of the animations that the user would like to buy. Our API will automatically calculate the best pricing package for your user based on the number of animations they have chosen, but you can always log in and update it.
+
+You can see example implementations of creating and retrieving clients using CURL in our "examples" folder.
+
+The API will return the exact same response as the Client Information request listed below.
+
 __Client Information__
 
 Variables are provided below that trigger different types of information to be returned with your API request. Client information will only be available if that account is associated with your API key.
 
+You can see example implementations of creating and retrieving clients using CURL in our "examples" folder.
+
 - Retrieve information about a client. Response includes practice name, url and content list (files/openthis codes).
+
 ```
 @int client
 
 https://swarminteractive.com/vm/api/client/?key=YOURAPIKEYHERE&client=1234
 
 @return json
+```
+
+Example JSON:
+```json
+{
+    id: 1234,
+    practice: "Your Practice Name",
+    url: "yoururl.com",
+    active: 0,
+    color: "#364b8c",
+    art: "caduceus",
+    content: [
+        "A_b6cd20aa",
+        "A_f6094215",
+        "A_0c8762d6",
+    ],
+    files: [
+        "osteomyelitisbeads",
+        "conscioussedation",
+        "generalanesthesia",
+    ]
+}
 ```
