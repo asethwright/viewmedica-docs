@@ -4,9 +4,10 @@
 2. [Help Links](#help-links)
 3. [Using the Player](#using-the-player)
 4. [Embed Variables](#embed-variables)
-5. [Functions](#functions)
+5. [Controlling the Player](#controlling-the-player)
+6. [Global Functions](#global-functions)
 7. [Information Requests](#information-requests)
-6. [Creating/Retrieving a Client](#client-information)
+8. [Creating/Retrieving a Client](#client-information)
 
 ### Terminology
 
@@ -173,7 +174,165 @@ ex.
 fullscreen=false;
 ```
 
-### Functions
+### Controlling the Player
+
+The ViewMedica player has a front-end API that allows for JavaScript control of the player. It also allows you to retrieve information about the player's current state, such as how long the current video is and what its current position is.
+
+By default after a vm_open is called, the player assigns the ViewMedica API to a global object _vm. You can use this object to control the player or create your own. Typically, this would only be necessary if you had multiple ViewMedica embeds on the same page.
+
+```
+// pass the div ID that contains viewmedica create a new vm api object
+// or you can use the globally assigned _vm object if there is only one video on that page
+
+var my_viewmedica = new VM_PLAYER('A_123456');
+```
+
+__Events__
+
+*You can add event listeners that will be triggered by the ViewMedica player when certain points are reached. It is recommended to attach these listeners to the div element that contains ViewMedica, which is accessible through the global VM_PLAYER object.*
+
+- __API Ready Event__
+
+```
+// add event listener for when the viewmedica api is ready to be used
+// and the player is completely loaded
+
+_vm.container.addEventListener('onReady', function(e) {
+    console.log("VM API Ready");
+    console.log(e.detail);
+});
+```
+
+- __Playback State Change__
+
+```
+// event fires when the player's video state changes
+
+_vm.container.addEventListener('onStateChange', function(e) {
+    // true if player video is ready
+    console.log( _vm.getPlayerState() === _vm.states.READY );
+});
+```
+
+- __Caption Change__
+
+```
+// event fires when the player's caption changes
+
+_vm.container.addEventListener('onCaptionChange', function(e) {
+    console.log( _vm.getCaption() );
+});
+```
+
+- __Volume Change__
+
+```
+// event fires when the player's volume changes
+
+_vm.container.addEventListener('onVolumeChange', function(e) {
+    console.log( _vm.getVolume() );
+});
+```
+
+__Retrieve Player Information__
+
+Information about the video is available once the player is ready, so it will need to be retrieve after the appropriate event is fired.
+
+- __Video Duration__
+
+```
+_vm.container.addEventListener('onStateChange', function(e) {
+    if (_vm.getPlayerState() === _vm.states.READY) {
+        var duration = _vm.getDuration();
+        console.log(duration);
+    }
+});
+```
+
+- __Video Current Time__
+
+```
+var time = _vm.getCurrentTime();
+console.log(time);
+```
+
+- __Playback State__
+
+```
+_vm.container.addEventListener('onStateChange', function(e) {
+    var state = _vm.getPlayerState();
+
+    /* All Playback States
+     * _vm.states.WAITING: -1,
+     * _vm.states.READY: 0,
+     * _vm.states.PLAYING: 1,
+     * _vm.states.PAUSED: 2
+     */
+});
+```
+
+- __Caption__
+
+```
+_vm.container.addEventListener('onCaptionChange', function(e) {
+    var caption = _vm.getCaption();
+    console.log(caption);
+});
+```
+
+- __Volume__
+
+```
+_vm.container.addEventListener('onVolumeChange', function(e) {
+    var volume = _vm.getVolume();
+    console.log(volume);
+});
+```
+
+__Functions to Control Playback__
+
+- __Navigate to a Video__
+
+```
+// exits the current video and moves to the location specified.
+// the load screen will appear until the location is succesfully loaded, however, the player will not actually reload
+
+_vm.navigate("A_123456");
+```
+
+- __Play/Pause a Video__
+
+```
+_vm.playVideo();
+_vm.pauseVideo();
+```
+
+- __Exit a video (stop playback)__
+
+```
+_vm.exitVideo();
+```
+
+- __Seek a Video__
+
+```
+_vm.seekTo(90);
+```
+
+- __Set Player Vlume__
+
+```
+// sets volume to half
+_vm.setVolume(0.5);
+```
+
+- __Toggle Player Mute__
+
+```
+_vm.toggleMute();
+```
+
+### Global Functions
 
 - __Open the player__
 ```
@@ -186,6 +345,7 @@ vm_open();
 ```
 
 - __Toggle Full Screen Mode__
+
 ```
 function _vm_toggle_fs(type, target, open) {}
 
