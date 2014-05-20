@@ -34,7 +34,7 @@ The standard ViewMedica documentation can be found at https://swarminteractive.c
 
 *A vm_open function call is dispatched to indicate that the ViewMedica player should use all of the currently set global variables and write the player interface to the targeted div. Variables will still persist after the vm_open function has been called, so future players can be opened by simply changing the openthis value, although our standard embed gives all values for user convenience.*
 
-```
+```js
 ex.
 vm_open();
 ```
@@ -43,7 +43,7 @@ vm_open();
 
 *A basic embed is listed below to give context for the rest of the configuration options. This embed will open the ViewMedica 7 viewer in its default state with navigation menus.*
 
-```
+```html
 <!-- ViewMedica Embed Start -->
 <div id="vm"></div>
 <script type="text/javascript" src="https://www.swarminteractive.com/js/vm.js"></script>
@@ -51,34 +51,34 @@ vm_open();
 <!-- ViewMedica Embed End -->
 ```
 
-- __Client ID__ *string*
+- Client ID *string*
 
 Global variable which loads a preferences file into the ViewMedica viewer. All of these preferences can be overridden through embed variables. It is also used to determine what content a particular user has available.
 
-```
+```js
 ex.
 client="1234";
 ```
 
-- __Language__ *string*
+- Language *string*
 
 Sets the language of the ViewMedica 7 viewer. This will override any option that has been selected through the users ViewMedica preferences panel at viewmedica.com. Only video items that have been translated in the selected language will be visible.
 
-```
+```js
 ex.
 lang="es";
 ```
 
-- __Width__ *int*
+- Width *int*
 
 Sets the with of the ViewMedica player. The height will automatically be calculated from this value so that videos fit appropriately within the ViewMedica player.
 
-```
+```js
 ex.
 width=580;
 ```
 
-- __Openthis__ *string*
+- Openthis *string*
 
 Tells the ViewMedica player either:
 
@@ -87,89 +87,89 @@ Tells the ViewMedica player either:
 
 A full list of openthis codes can be found in your viewmedica.com account under installation support.
 
-```
+```js
 ex.
 openthis="A_123456"; //a video always starts with A_
 openthis="L_123456"; //menu item locations may begin with L_ C_ or G_
 ```
 
-- __Target__ *string*
+- Target *string*
 
 Override the empty element that the ViewMedica player will be inserted in to. By default, the target is the same as the openthis code.
 
-```
+```js
 ex.
 target_div="my_custom_div_id";
 ```
 
-- __Disclaimer__ *boolean*
+- Disclaimer *boolean*
 
 Whether or not the disclaimer should appear in the lower menu bar of the ViewMedica player.
 
-```
+```js
 ex.
 disclaimer=false;
 ```
 
-- __Menu Access__ *boolean*
+- Menu Access *boolean*
 
 By default, When the player is opened to video mode, users can exit the video interface and return to the default menu structure. Setting menuaccess to false disables these buttons and the player will always remain in single video mode.
 
-```
+```js
 ex.
 menuaccess=false;
 ```
 
-- __Captions__ *boolean*
+- Captions *boolean*
 
 Hide the closed captions toggle button.
 
-```
+```js
 ex.
 captions=false;
 ```
 
-- __Social__ *boolean*
+- Social *boolean*
 
 Hide the social sharing (email, facebook, twitter) button.
 
-```
+```js
 ex.
 social=false;
 ```
 
-- __Secure__ *boolean*
+- Secure *boolean*
 
 Load all assets over HTTPS. By default, the ViewMedica player does not require a secure connection.
 
-```
+```js
 ex.
 secure=true;
 ```
 
-- __Ignore Audio__ *boolean*
+- Ignore Audio *boolean*
 
 The player is loaded in a muted state by default.
 
-```
+```js
 ex.
 ignoreaudio=true;
 ```
 
-- __Brochures__ *boolean*
+- Brochures *boolean*
 
 Do not show the brochure printing buttons.
 
-```
+```js
 ex.
 brochures=false;
 ```
 
-- __Full Screen__ *boolean*
+- Full Screen *boolean*
 
 Hide the button which toggles full screen mode. This can be useful if the player is in a restricted iFrame and cannot be sized properly.
 
-```
+```js
 ex.
 fullscreen=false;
 ```
@@ -180,7 +180,7 @@ The ViewMedica player has a front-end API that allows for JavaScript control of 
 
 __By default after a vm_open is called, the player assigns the ViewMedica API to a global object _vm.__ You can use this object to control the player or create your own. Typically, this would only be necessary if you had multiple ViewMedica embeds on the same page.
 
-```
+```js
 // pass the div ID that contains viewmedica create a new vm api object
 // or you can use the globally assigned _vm object if there is only one video on that page
 
@@ -191,9 +191,9 @@ __Events__
 
 *You can add event listeners that will be triggered by the ViewMedica player when certain points are reached. It is recommended to attach these listeners to the div element that contains ViewMedica, which is accessible through the global VM_PLAYER object.*
 
-- __API Ready Event__
+- API Ready Event
 
-```
+```js
 // add event listener for when the viewmedica api is ready to be used
 // and the player is completely loaded
 
@@ -203,9 +203,9 @@ _vm.container.addEventListener('onReady', function(e) {
 });
 ```
 
-- __Playback State Change__
+- Playback State Change
 
-```
+```js
 // event fires when the player's video state changes
 
 _vm.container.addEventListener('onStateChange', function(e) {
@@ -214,9 +214,9 @@ _vm.container.addEventListener('onStateChange', function(e) {
 });
 ```
 
-- __Caption Change__
+- Caption Change
 
-```
+```js
 // event fires when the player's caption changes
 
 _vm.container.addEventListener('onCaptionChange', function(e) {
@@ -224,9 +224,9 @@ _vm.container.addEventListener('onCaptionChange', function(e) {
 });
 ```
 
-- __Volume Change__
+- Volume Change
 
-```
+```js
 // event fires when the player's volume changes
 
 _vm.container.addEventListener('onVolumeChange', function(e) {
@@ -238,9 +238,9 @@ __Retrieve Player Information__
 
 Information about the video is available once the player is ready, so it will need to be retrieve after the appropriate event is fired.
 
-- __Video Duration__
+- Video Duration
 
-```
+```js
 _vm.container.addEventListener('onStateChange', function(e) {
     if (_vm.getPlayerState() === _vm.states.READY) {
         var duration = _vm.getDuration();
@@ -249,40 +249,40 @@ _vm.container.addEventListener('onStateChange', function(e) {
 });
 ```
 
-- __Video Current Time__
+- Video Current Time
 
-```
+```js
 var time = _vm.getCurrentTime();
 console.log(time);
 ```
 
-- __Playback State__
+- Playback State
 
-```
+```js
 _vm.container.addEventListener('onStateChange', function(e) {
     var state = _vm.getPlayerState();
 
     /* All Playback States
-     * _vm.states.WAITING: -1,
-     * _vm.states.READY: 0,
-     * _vm.states.PLAYING: 1,
-     * _vm.states.PAUSED: 2
+     * _vm.states.WAITING   --> -1
+     * _vm.states.READY     --> 0
+     * _vm.states.PLAYING   --> 1
+     * _vm.states.PAUSED    --> 2
      */
 });
 ```
 
-- __Caption__
+- Caption
 
-```
+```js
 _vm.container.addEventListener('onCaptionChange', function(e) {
     var caption = _vm.getCaption();
     console.log(caption);
 });
 ```
 
-- __Volume__
+- Volume
 
-```
+```js
 _vm.container.addEventListener('onVolumeChange', function(e) {
     var volume = _vm.getVolume();
     console.log(volume);
@@ -291,51 +291,52 @@ _vm.container.addEventListener('onVolumeChange', function(e) {
 
 __Functions to Control Playback__
 
-- __Navigate to a Video__
+- Navigate to a Video
 
-```
+```js
 // exits the current video and moves to the location specified.
 // the load screen will appear until the location is succesfully loaded, however, the player will not actually reload
 
 _vm.navigate("A_123456");
 ```
 
-- __Play/Pause a Video__
+- Play/Pause a Video
 
-```
+```js
 _vm.playVideo();
 _vm.pauseVideo();
 ```
 
-- __Exit a video (stop playback)__
+- Exit a video (stop playback)
 
-```
+```js
 _vm.exitVideo();
 ```
 
-- __Seek a Video__
+- Seek a Video
 
-```
+```js
 _vm.seekTo(90);
 ```
 
-- __Set Player Vlume__
+- Set Player Vlume
 
-```
+```js
 // sets volume to half
 _vm.setVolume(0.5);
 ```
 
-- __Toggle Player Mute__
+- Toggle Player Mute
 
-```
+```js
 _vm.toggleMute();
 ```
 
 ### Global Functions
 
-- __Open the player__
-```
+- Open the player
+
+```js
 function vm_open() {}
 
 // Open the ViewMedica player with the currently set global variables. Overwrite all information in the current targeted DOM element.
@@ -344,9 +345,9 @@ ex.
 vm_open();
 ```
 
-- __Toggle Full Screen Mode__
+- Toggle Full Screen Mode
 
-```
+```js
 function _vm_toggle_fs(type, target, open) {}
 
 // @param type (string) Unused
@@ -358,8 +359,8 @@ _vm_toggle_fs('fs', '#A_123456', 'A_123456'); //player was opened to an animatio
 _vm_toggle_fs('fs', '#vm', 'vm'); //default player state
 ```
 
-- __Add Google Analytics Track__
-```
+- Add Google Analytics Track
+```js
 function _vm_ga(trackingcode) {}
 
 // @param trackingcode (string) Information to send to google analytics. The default format used by ViewMedica is #VM Video Title - videofilename - playerlanguage
@@ -453,7 +454,7 @@ You can see example implementations of creating and retrieving clients using CUR
 
 - Retrieve information about a client. Response includes practice name, url and content list (files/openthis codes).
 
-```
+```php
 @int client
 
 https://swarminteractive.com/vm/api/client/?key=YOURAPIKEYHERE&client=1234
