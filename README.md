@@ -14,21 +14,21 @@
 *Menu Structure*
 
 1. Library - The top level taxonomy item in ViewMedica 7.
-2. Collection - Subcategorizes libraries. For example, there are many collections in a library. If a collection is to be skipped, it is given the same name as the library.
-3. Group - Typically groups are divided into either Procedures, Conditions, and Surgical Procedures/Non-surgical Procedures.
+2. Collection - Subcategorizes Libraries. A library may be divided into several Collections. If a library is not divided into Collections, the Collection menu is skipped, and given the same name as the library.
+3. Group - Subcategorizes Collections. Typically groups are set as Procedures, Conditions, and Surgical Procedures/Non-surgical Procedures.
 4. Item - A ViewMedica content item that can be viewed by the end user.
 
 *Player Versions*
 
-1. ViewMedica 7 - refers to the suite of both ViewMedica Flash and ViewMedica HTML. It is an attempt to have a version of ViewMedica which is supported on all devices.
-2. ViewMedica HTML - The JavaScript and HTML version of ViewMedica which was released in 2013. This version of ViewMedica is being actively developed.
-3. ViewMedica Flash - The deprecated version of ViewMedica which is written in ActionScript. This player is no longer supported but is maintained for supporting video playback in IE8 and lower.
-4. ViewMedica Mobile - A paid service which allows users to play videos from their device without an internet connection. It can be downloaded from the App Store. Mirroring is also required and can be purchased from the user's viewmedica.com account.
+1. ViewMedica 7 - refers to the suite of both ViewMedica Flash and ViewMedica HTML. This allows for a ViewMedica which is supported on all devices.
+2. ViewMedica HTML - The JavaScript and HTML version of ViewMedica which was first released in 2013. This version of ViewMedica is being actively developed.
+3. ViewMedica Flash - The deprecated version of ViewMedica which is written in ActionScript. This player is no longer under development, but is used to support video playback in IE8 and lower.
+4. ViewMedica Mobile - An app which allows users to play videos from their iPad device without an internet connection. It can be downloaded from the App Store. Users with an active ViewMedica Web account can purchase from their viewmedica.com account the Mobile Mirroring add-on service required to use the ViewMedica Mobile app.
 5. ViewMedica DVD/CCTV - Products for in-office or waiting room use of the ViewMedica player and require no internet connection.
 
 ### Help Links
 
-The standard ViewMedica documentation can be found at https://swarminteractive.com/viewmedica-support.html. This documentation is intended for users who are writing custom applications which utilize the ViewMedica player.
+The standard ViewMedica documentation can be found at https://swarminteractive.com/viewmedica-support.html. This documentation is intended for users who are writing custom applications which use the ViewMedica player.
 
 ### Using the Player
 
@@ -71,7 +71,7 @@ lang="es";
 
 - Width *int*
 
-Sets the with of the ViewMedica player. The height will automatically be calculated from this value so that videos fit appropriately within the ViewMedica player.
+Sets the width of the ViewMedica player. The height will automatically be calculated from this value so that videos fit appropriately within the ViewMedica player.
 
 ```js
 ex.
@@ -149,7 +149,7 @@ secure=true;
 
 - Ignore Audio *boolean*
 
-The player is loaded in a muted state by default.
+Load the player in a muted state.
 
 ```js
 ex.
