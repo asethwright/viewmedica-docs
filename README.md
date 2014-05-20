@@ -178,7 +178,7 @@ fullscreen=false;
 
 The ViewMedica player has a front-end API that allows for JavaScript control of the player. It also allows you to retrieve information about the player's current state, such as how long the current video is and what its current position is.
 
-By default after a vm_open is called, the player assigns the ViewMedica API to a global object _vm. You can use this object to control the player or create your own. Typically, this would only be necessary if you had multiple ViewMedica embeds on the same page.
+__By default after a vm_open is called, the player assigns the ViewMedica API to a global object _vm.__ You can use this object to control the player or create your own. Typically, this would only be necessary if you had multiple ViewMedica embeds on the same page.
 
 ```
 // pass the div ID that contains viewmedica create a new vm api object
