@@ -7,7 +7,7 @@
 5. [Controlling the Player](#controlling-the-player)
 6. [Global Functions](#global-functions)
 7. [Information Requests](#information-requests)
-8. [Creating/Retrieving a Client](#client-information)
+8. [Creating/Retrieving/Updating a Client](#client-information)
 
 ### Terminology
 
@@ -445,6 +445,21 @@ As you can see, the content is a comma separated string of all of the animations
 You can see example implementations of creating and retrieving clients using CURL in our "examples" folder.
 
 The API will return the exact same response as the Client Information request listed below.
+
+__Update a Client__
+
+Similar to creating a client, you can update one of your client's by passing a "client" parameter with your HTTP POST request. The client variable can be passed as a GET or POST parameter along with a POST request.
+
+The example below will update client #1234's content to contain three videos. The request will return the client's updated JSON information or a 0 if the client update could not be completed.
+
+```
+POST URL
+https://swarminteractive.com/vm/api/client?key=YOURAPIKEYHERE
+
+REQUIRED PARAMS
+client: 1234
+content: "A_b6cd20aa,A_f6094215,A_0c8762d6"
+```
 
 __Get Info About a Client__
 
