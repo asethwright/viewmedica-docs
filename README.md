@@ -458,7 +458,11 @@ https://swarminteractive.com/vm/api/client?key=YOURAPIKEYHERE
 
 REQUIRED PARAMS
 client: 1234
-content: "A_b6cd20aa,A_f6094215,A_0c8762d6"
+
+OPTIONAL PARAMS
+content: "A_b6cd20aa,A_f6094215,A_0c8762d6" //add or remove videos
+url: "viewmedica.com" // change users URL to a different location
+practice: "Your Practice Name Here" // change users practice name
 ```
 
 __Get Info About a Client__
